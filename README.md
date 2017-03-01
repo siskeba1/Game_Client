@@ -1,2 +1,1 @@
-# Game_Client
-TCP/IP client.
+This is the TCP/IP game client.
