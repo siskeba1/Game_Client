@@ -23,6 +23,9 @@ private:
     QNetworkSession *networkSession;
     QDataStream in;
     void configureClient();
+private slots:
+    socketConnected();
+    socketDisconnected();
 };
 
 #endif // TCPCLIENT_H

@@ -8,6 +8,7 @@ TcpClient::TcpClient(QObject *parent)
       networkSession(Q_NULLPTR)
 {
     configureClient();
+    connectToServer(QString("192.168.153.1"), 6000);
 }
 
 /**
@@ -40,6 +41,16 @@ void TcpClient::configureClient()
         connect(networkSession, &QNetworkSession::opened, this, &TcpClient::sessionOpened);
         networkSession->open();
     }
+}
+
+TcpClient::socketConnected()
+{
+    qDebug() << "connected";
+}
+
+TcpClient::socketDisconnected()
+{
+    qDebug() << "dc";
 }
 
 /**
