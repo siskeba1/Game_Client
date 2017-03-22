@@ -8,7 +8,7 @@ TcpClient::TcpClient(QObject *parent)
       networkSession(Q_NULLPTR)
 {
     configureClient();
-    connectToServer(QString("192.168.153.1"), 6000);
+    connectToServer(QString("192.168.153.1"), 5001);
 }
 
 /**
@@ -43,12 +43,12 @@ void TcpClient::configureClient()
     }
 }
 
-TcpClient::socketConnected()
+void TcpClient::socketConnected()
 {
     qDebug() << "connected";
 }
 
-TcpClient::socketDisconnected()
+void TcpClient::socketDisconnected()
 {
     qDebug() << "dc";
 }
@@ -92,4 +92,17 @@ void TcpClient::disconnectFromServer()
 {
     tcpSocket->disconnectFromHost();
     tcpSocket->close();
+}
+
+void TcpClient::sendMessage(QString message)
+{
+    QByteArray block;
+    QDataStream out(&block, QIODevice::WriteOnly);
+    out.setVersion(QDataStream::Qt_5_7);
+
+    //Encrypting
+    //out << QString::fromStdString(AESCrypter->encryption(newMessage.toStdString().c_str()).toStdString());
+    out << message;
+    tcpSocket->write(block);
+    tcpSocket->waitForBytesWritten();
 }
