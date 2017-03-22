@@ -27,6 +27,7 @@ public slots:
     void socketConnected();
     void socketDisconnected();
     void sendMessage(QString message);
+    void readMessage();
 };
 
 #endif // TCPCLIENT_H

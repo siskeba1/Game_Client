@@ -19,7 +19,7 @@ void TcpClient::configureClient()
 {
     in.setDevice(tcpSocket);
     in.setVersion(QDataStream::Qt_5_7);
-    //connect(tcpSocket, &QIODevice::readyRead, this, &TcpClient::readMessage);
+    connect(tcpSocket, &QIODevice::readyRead, this, &TcpClient::readMessage);
     typedef void (QAbstractSocket::*QAbstractSocketErrorSignal)(QAbstractSocket::SocketError);
     //connect(tcpSocket, static_cast<QAbstractSocketErrorSignal>(&QAbstractSocket::error),this, &TcpClient::displayError);
     connect(tcpSocket,SIGNAL(connected()),this,SLOT(socketConnected()));
@@ -105,4 +105,11 @@ void TcpClient::sendMessage(QString message)
     out << message;
     tcpSocket->write(block);
     tcpSocket->waitForBytesWritten();
+}
+
+void TcpClient::readMessage()
+{
+    in.startTransaction();
+    in >> message;
+    qDebug() << "incoming message : " << message;
 }
