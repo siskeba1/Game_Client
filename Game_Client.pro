@@ -13,15 +13,14 @@ TARGET = Game_Client
 TEMPLATE = app
 
 
-SOURCES += main.cpp\
-        mainwindow.cpp \
-    tcpclient.cpp \
-    clientcontroller.cpp \
-    keyboardlistener.cpp
+SOURCES += Main/main.cpp\
+    Controller/ClientController.cpp \
+    View/MainWindow.cpp \
+    Model/TcpClient.cpp
 
-HEADERS  += mainwindow.h \
-    tcpclient.h \
-    clientcontroller.h \
-    keyboardlistener.h
+HEADERS  += \
+    Controller/ClientController.h \
+    View/MainWindow.h \
+    Model/TcpClient.h
 
-FORMS    += mainwindow.ui
+FORMS    += GUI/mainwindow.ui

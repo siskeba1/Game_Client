@@ -1,4 +1,4 @@
-#include "tcpclient.h"
+#include "Model/TcpClient.h"
 #include <QtWidgets>
 #include <QtNetwork>
 

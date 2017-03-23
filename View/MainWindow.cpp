@@ -1,5 +1,5 @@
-#include "mainwindow.h"
-#include "ui_mainwindow.h"
+#include "View/MainWindow.h"
+#include "GUI/ui_mainwindow.h"
 #include <QDebug>
 #include <QKeyEvent>
 

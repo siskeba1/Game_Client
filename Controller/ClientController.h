@@ -2,9 +2,8 @@
 #define CLIENTCONTROLLER_H
 
 #include <QObject>
-#include <tcpclient.h>
-#include <mainwindow.h>
-#include <keyboardlistener.h>
+#include <Model/TcpClient.h>
+#include <View/MainWindow.h>
 
 class ClientController : public QObject
 {
@@ -14,7 +13,6 @@ public:
 private:
     TcpClient *tcpClient;
     MainWindow *mainWindow;
-    KeyBoardListener *keyBoardListener;
 };
 
 #endif // CLIENTCONTROLLER_H

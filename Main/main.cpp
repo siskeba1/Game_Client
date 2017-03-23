@@ -1,4 +1,4 @@
-#include <clientcontroller.h>
+#include <Controller/ClientController.h>
 #include <QApplication>
 
 int main(int argc, char *argv[])

@@ -1,4 +1,4 @@
-#include "clientcontroller.h"
+#include "Controller/ClientController.h"
 
 ClientController::ClientController(QObject *parent): QObject(parent)
 {
