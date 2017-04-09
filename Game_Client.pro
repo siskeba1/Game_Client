@@ -23,4 +23,5 @@ HEADERS  += \
     View/MainWindow.h \
     Model/TcpClient.h
 
-FORMS    += GUI/mainwindow.ui
+FORMS    += \
+    GUI/MainWindow.ui

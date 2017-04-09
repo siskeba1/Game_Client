@@ -38,3 +38,4 @@ CMakeLists.txt.user
 
 #debug folder
 debug
+*release*

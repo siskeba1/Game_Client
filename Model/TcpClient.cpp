@@ -8,7 +8,7 @@ TcpClient::TcpClient(QObject *parent)
       networkSession(Q_NULLPTR)
 {
     configureClient();
-    connectToServer(QString("192.168.153.1"), 5001);
+//    slotConnectToServer(QString("192.168.153.1"), 5001);
 }
 
 /**
@@ -45,12 +45,14 @@ void TcpClient::configureClient()
 
 void TcpClient::socketConnected()
 {
-    qDebug() << "connected";
+    emit signalConnected();
+    qDebug() << "connected to the server";
 }
 
 void TcpClient::socketDisconnected()
 {
-    qDebug() << "dc";
+    emit signalDisconnected();
+    qDebug() << "server disconnected";
 }
 
 /**
@@ -78,7 +80,7 @@ void TcpClient::sessionOpened()
  * @param serverPort
  * Connects to the host. Waiting time: 1 sec.
  */
-void TcpClient::connectToServer(QString serverIp, int serverPort)
+void TcpClient::slotConnectToServer(QString serverIp, int serverPort)
 {
     tcpSocket->connectToHost(serverIp, serverPort);
     tcpSocket->waitForConnected(1000);
@@ -112,4 +114,17 @@ void TcpClient::readMessage()
     in.startTransaction();
     in >> message;
     qDebug() << "incoming message : " << message;
+
+    //TODO: modify to switch case with command map.
+    if (message == "Answer message from server.")
+    {
+        timer.stop();
+        emit signalReceivedAnswerPing(timer.interval());
+    }
+}
+
+void TcpClient::slotSendPingRequest()
+{
+    timer.start();
+    sendMessage(QString("REQ_PING"));
 }

@@ -15,17 +15,28 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
 signals:
-    void clicked(QString message);
+    void sendMessage(QString message);
     void pressed(QKeyEvent *event);
     void released(QKeyEvent *event);
+
+    void signalConnectButtonPressed(QString ip, int port);
+    void signalCheckPingButton();
+
 protected:
-    void keyPressEvent(QKeyEvent *event);
-    void keyReleaseEvent(QKeyEvent *event);
-private slots:
-    void on_pushButton_clicked();
+    void keyPressEvent(QKeyEvent* event);
+    void keyReleaseEvent(QKeyEvent*){}
 public slots:
-    void slotKeyPressed(QKeyEvent *event);
-    void slotKeyReleased(QKeyEvent *event);
+    void slotKeyPressed(QKeyEvent*){}
+    void slotKeyReleased(QKeyEvent*){}
+    void slotClientConnected();
+    void slotClientDisconnected();
+    void slotPing(int latency);
+private slots:
+    void on_connectButton_clicked();
+
+    void on_pushButton_2_clicked();
+
+    void on_sendButton_clicked();
 
 private:
     Ui::MainWindow *ui;
