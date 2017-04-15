@@ -1,8 +1,12 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
+#include <Player/Player.h>
+
 #include <QMainWindow>
 #include <QObject>
+#include <QPen>
+#include <View/Scene/Scene.h>
 
 namespace Ui {
 class MainWindow;
@@ -25,6 +29,10 @@ signals:
 protected:
     void keyPressEvent(QKeyEvent* event);
     void keyReleaseEvent(QKeyEvent*){}
+    void mouseMoveEvent(QMouseEvent *event);
+    void mousePressEvent(QMouseEvent *event);
+    void mouseReleaseEvent(QMouseEvent *event);
+
 public slots:
     void slotKeyPressed(QKeyEvent*){}
     void slotKeyReleased(QKeyEvent*){}
@@ -40,6 +48,9 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
+    Player* player_;
+    QPen pen_;
+    Scene* scene_;
 };
 
 #endif // MAINWINDOW_H

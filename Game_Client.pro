@@ -16,12 +16,16 @@ TEMPLATE = app
 SOURCES += Main/main.cpp\
     Controller/ClientController.cpp \
     View/MainWindow.cpp \
-    Model/TcpClient.cpp
+    Model/TcpClient.cpp \
+    Player/Player.cpp \
+    View/Scene/Scene.cpp
 
 HEADERS  += \
     Controller/ClientController.h \
     View/MainWindow.h \
-    Model/TcpClient.h
+    Model/TcpClient.h \
+    Player/Player.h \
+    View/Scene/Scene.h
 
 FORMS    += \
     GUI/MainWindow.ui

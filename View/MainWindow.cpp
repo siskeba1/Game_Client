@@ -10,10 +10,49 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
     ui->connectionStateLabel->setStyleSheet("QLabel { background-color : red;}");
     ui->connectionStatusLabel->setText("Not connected");
-    ui->ipLineEdit->setText("192.168.153.1");
+    ui->ipLineEdit->setText("192.168.1.67");
     ui->portLineEdit->setText("5001");
 
+    this->setMouseTracking(true);
+    ui->centralWidget->setMouseTracking(true);
+
     QWidget::setFocusPolicy(Qt::StrongFocus);
+
+    QLine line;
+    line.setP1(QPoint(0, 0));
+    line.setP2(QPoint(100, 100));
+
+    pen_.setColor(QColor(200, 200, 200));
+
+    scene_ = new Scene(ui->graphicsView);
+
+    ui->graphicsView->setScene(scene_);
+
+    ui->graphicsView->setMouseTracking(true);
+    ui->widget->setMouseTracking(true);
+    ui->frame->setMouseTracking(true);
+    ui->frame_2->setMouseTracking(true);
+    ui->frame_3->setMouseTracking(true);
+
+    ui->graphicsView->scene()->addLine(line, pen_);
+
+    //Player
+    //player_ = new Player();
+
+//    player_->rectangle().setWidth(35);
+//    player_->rectangle().setHeight(30);
+
+//    player_->rectangle().setX(20);
+//    player_->rectangle().setY(20);
+
+//    QGraphicsScene* scene = new QGraphicsScene();
+    //scene->setForegroundBrush(QBrush(QColor(255,255,0)));
+
+    //6scene->set
+
+    //ui->graphicsView->setScene(scene);
+
+    //ui->graphicsView->scene()->addRect(player_->rectangle());
 
     connect(this, SIGNAL(pressed(QKeyEvent*)), this, SLOT(slotKeyPressed(QKeyEvent*)));
     //connect(this, SIGNAL(released(QKeyEvent*)), this, SLOT(slotKeyReleased(QKeyEvent*)));
@@ -35,6 +74,20 @@ void MainWindow::keyPressEvent(QKeyEvent *event)
     }
         break;
     }
+}
+
+void MainWindow::mouseMoveEvent(QMouseEvent *event)
+{
+}
+
+void MainWindow::mousePressEvent(QMouseEvent *event)
+{
+
+}
+
+void MainWindow::mouseReleaseEvent(QMouseEvent *event)
+{
+
 }
 
 void MainWindow::slotClientConnected()

@@ -4,7 +4,7 @@
 #include <QObject>
 #include <QTcpSocket>
 #include <QDataStream>
-#include <QTimer>
+#include <QElapsedTimer>
 
 class QTcpSocket;
 class QNetworkSession;
@@ -22,7 +22,7 @@ private:
     QString message;
     QNetworkSession *networkSession;
     QDataStream in;
-    QTimer timer;
+    QElapsedTimer timer_;
     int latency_;
     void configureClient();
 public slots:

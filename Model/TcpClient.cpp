@@ -118,13 +118,12 @@ void TcpClient::readMessage()
     //TODO: modify to switch case with command map.
     if (message == "Answer message from server.")
     {
-        timer.stop();
-        emit signalReceivedAnswerPing(timer.interval());
+        emit signalReceivedAnswerPing(timer_.elapsed());
     }
 }
 
 void TcpClient::slotSendPingRequest()
 {
-    timer.start();
+    timer_.start();
     sendMessage(QString("REQ_PING"));
 }
